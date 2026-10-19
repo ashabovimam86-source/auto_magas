@@ -6,7 +6,7 @@
   <title>MAGAS AUTO — Премиальные автомобили в Ингушетии</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -20,7 +20,7 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: #0A0A0A;
+      background-color: #050505;
       color: #FFFFFF;
       line-height: 1.6;
       font-weight: 400;
@@ -28,11 +28,10 @@
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4, .logo {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
 
     .container {
@@ -41,24 +40,51 @@
       padding: 0 40px;
     }
 
+    /* ---------- MARQUEE ---------- */
+    .marquee {
+      background-color: #050505;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 10px 0;
+      position: relative;
+      z-index: 101;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 25s linear infinite;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: #D4AF37;
+      font-weight: 500;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* ---------- HEADER ---------- */
     .header {
       position: fixed;
-      top: 0;
+      top: 41px;
       left: 0;
       width: 100%;
       padding: 24px 0;
-      background-color: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background-color: transparent;
+      transition: all 0.4s ease;
       z-index: 100;
-      transition: padding 0.3s ease;
     }
 
     .header.scrolled {
+      top: 0;
+      background-color: rgba(5, 5, 5, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
       padding: 16px 0;
-      background-color: rgba(10, 10, 10, 0.95);
     }
 
     .header-inner {
@@ -68,6 +94,7 @@
     }
 
     .logo {
+      font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       font-weight: 700;
       color: #FFFFFF;
@@ -76,50 +103,67 @@
     }
 
     .logo span {
-      color: #E3000F;
+      color: #D4AF37;
     }
 
     .header-nav {
       display: flex;
-      gap: 32px;
+      gap: 40px;
     }
 
     .header-nav a {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       color: #CCCCCC;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
+      position: relative;
+    }
+
+    .header-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: #D4AF37;
+      transition: width 0.3s ease;
     }
 
     .header-nav a:hover {
-      color: #E3000F;
+      color: #D4AF37;
+    }
+
+    .header-nav a:hover::after {
+      width: 100%;
     }
 
     .btn-header {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 24px;
+      padding: 12px 28px;
       background-color: #E3000F;
       color: #FFFFFF;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       font-weight: 600;
       text-decoration: none;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
       border: none;
       cursor: pointer;
     }
 
     .btn-header:hover {
       background-color: #B8000C;
+      box-shadow: 0 0 20px rgba(227, 0, 15, 0.4);
     }
 
-    /* ---------- HERO (ВИДЕО) ---------- */
+    /* ---------- HERO ---------- */
     .hero {
       position: relative;
       width: 100%;
@@ -147,24 +191,28 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 50%, rgba(10, 10, 10, 0.3) 100%);
+      background: linear-gradient(to right, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.6) 60%, rgba(5, 5, 5, 0.3) 100%);
       z-index: 2;
     }
 
     .hero-content {
       position: relative;
       z-index: 3;
-      max-width: 750px;
+      max-width: 800px;
       opacity: 0;
       transform: translateY(40px);
-      animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.3s;
+      animation: fadeUp 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.5s;
     }
 
     .hero h1 {
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-size: clamp(3rem, 5.5vw, 5rem);
       line-height: 1.1;
       margin-bottom: 24px;
       color: #FFFFFF;
+    }
+
+    .hero h1 span {
+      color: #D4AF37;
     }
 
     .hero .subtitle {
@@ -172,31 +220,33 @@
       color: #BBBBBB;
       font-weight: 300;
       margin-bottom: 48px;
-      max-width: 550px;
+      max-width: 600px;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 48px;
+      padding: 20px 56px;
       background-color: #E3000F;
       color: #FFFFFF;
       font-family: 'Montserrat', sans-serif;
       font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn-primary:hover {
       background-color: #B8000C;
+      box-shadow: 0 0 30px rgba(227, 0, 15, 0.4);
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(227, 0, 15, 0.3);
     }
 
     @keyframes fadeUp {
@@ -208,97 +258,113 @@
 
     /* ---------- СЕКЦИИ ---------- */
     .section-title {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 70px;
       color: #FFFFFF;
     }
 
     .section-title span {
-      color: #E3000F;
+      color: #D4AF37;
+      font-style: italic;
     }
 
-    /* ---------- НАПРАВЛЕНИЯ РАБОТЫ ---------- */
-    .fleet {
-      padding: 120px 0;
-      background-color: #0A0A0A;
+    /* ---------- НАПРАВЛЕНИЯ (GLASSMORPHISM) ---------- */
+    .directions {
+      padding: 140px 0;
+      background-color: #050505;
+      position: relative;
     }
 
-    .fleet-grid {
+    .directions::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      opacity: 0.3;
+    }
+
+    .directions-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
     }
 
-    .fleet-card {
-      background-color: #151515;
-      padding: 50px 40px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
+    .glass-card {
+      background: rgba(20, 20, 20, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 60px 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.3s ease, background 0.3s ease;
     }
 
-    .fleet-card.visible {
+    .glass-card.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .fleet-card:hover {
-      border-color: #E3000F;
-      background-color: #1A1A1A;
+    .glass-card:hover {
+      border-color: #D4AF37;
+      background: rgba(30, 30, 30, 0.6);
+      transform: translateY(-5px);
     }
 
-    .fleet-icon {
+    .glass-icon {
       width: 80px;
       height: 80px;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .fleet-icon svg {
-      width: 64px;
-      height: 64px;
-      stroke: #E3000F;
+    .glass-icon svg {
+      width: 60px;
+      height: 60px;
+      stroke: #D4AF37;
       fill: none;
       stroke-width: 1.2;
       stroke-linecap: round;
       stroke-linejoin: round;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
     }
 
-    .fleet-card:hover .fleet-icon svg {
+    .glass-card:hover .glass-icon svg {
       transform: scale(1.1);
     }
 
-    .fleet-card h3 {
-      font-size: 1.5rem;
+    .glass-card h3 {
+      font-size: 1.6rem;
       color: #FFFFFF;
       margin-bottom: 12px;
     }
 
-    .fleet-card p {
+    .glass-card p {
       font-size: 0.95rem;
-      color: #888888;
+      color: #999999;
       font-weight: 300;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    /* ---------- ПОЧЕМУ МЫ ---------- */
+    /* ---------- ПОЧЕМУ МЫ (СЧЕТЧИКИ) ---------- */
     .why-us {
-      padding: 120px 0;
-      background-color: #0F0F0F;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 140px 0;
+      background-color: #080808;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
     }
 
     .why-grid {
@@ -309,22 +375,15 @@
 
     .why-item {
       text-align: center;
-      padding: 40px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: border-color 0.3s ease, background 0.3s ease;
+      padding: 40px 20px;
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.3s, background 0.3s;
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .why-item.visible {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    .why-item:hover {
-      border-color: #E3000F;
-      background-color: rgba(227, 0, 15, 0.05);
     }
 
     .why-icon {
@@ -339,28 +398,49 @@
     .why-icon svg {
       width: 48px;
       height: 48px;
-      stroke: #E3000F;
+      stroke: #D4AF37;
       fill: none;
       stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
+    .counter {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: #D4AF37;
+      line-height: 1;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .counter-suffix {
+      font-size: 2.5rem;
+      vertical-align: super;
+      color: #D4AF37;
+    }
+
     .why-item h3 {
       font-size: 1.2rem;
-      margin-bottom: 12px;
       color: #FFFFFF;
+      margin-bottom: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
     .why-item p {
-      font-size: 0.9rem;
-      color: #999999;
+      font-size: 0.95rem;
+      color: #888888;
       line-height: 1.6;
     }
 
-    /* ---------- ОТЗЫВЫ ---------- */
+    /* ---------- ОТЗЫВЫ (GLASSMORPHISM) ---------- */
     .reviews {
-      padding: 120px 0;
+      padding: 140px 0;
+      background-color: #050505;
     }
 
     .reviews-grid {
@@ -370,9 +450,11 @@
     }
 
     .review-card {
-      background-color: #121212;
-      padding: 36px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(20, 20, 20, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 40px;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.3s;
@@ -384,38 +466,38 @@
     }
 
     .review-card:hover {
-      border-color: rgba(255, 255, 255, 0.15);
+      border-color: rgba(212, 175, 55, 0.5);
     }
 
     .review-stars {
-      color: #FFC107;
-      font-size: 1.2rem;
-      margin-bottom: 16px;
-      letter-spacing: 2px;
+      color: #D4AF37;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
     }
 
     .review-text {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: #DDDDDD;
       margin-bottom: 24px;
       font-style: italic;
-      line-height: 1.7;
+      line-height: 1.8;
+      font-weight: 300;
     }
 
     .review-author {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 500;
-      font-size: 1rem;
-      color: #FFFFFF;
-      text-transform: uppercase;
+      font-size: 1.1rem;
+      color: #D4AF37;
       letter-spacing: 0.05em;
     }
 
     /* ---------- КОНТАКТЫ ---------- */
     .contacts {
-      padding: 120px 0;
-      background-color: #0F0F0F;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 140px 0;
+      background-color: #080808;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
     }
 
     .contacts-box {
@@ -434,16 +516,17 @@
     }
 
     .contacts h2 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 20px;
     }
 
     .contacts-address {
       font-size: 1rem;
       color: #999999;
-      margin-bottom: 48px;
+      margin-bottom: 50px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
+      font-weight: 300;
     }
 
     .contacts-buttons {
@@ -458,33 +541,33 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 20px 48px;
+      padding: 20px 56px;
       background-color: transparent;
-      color: #FFFFFF;
-      border: 1px solid #FFFFFF;
+      color: #D4AF37;
+      border: 1px solid #D4AF37;
       font-family: 'Montserrat', sans-serif;
       font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.3s ease;
     }
 
     .btn-instagram:hover {
-      background-color: #FFFFFF;
-      color: #0A0A0A;
+      background-color: #D4AF37;
+      color: #050505;
     }
 
     /* ---------- FOOTER ---------- */
     .footer {
       padding: 40px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
       text-align: center;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #666666;
+      letter-spacing: 0.2em;
+      color: #555555;
     }
 
     /* ---------- АДАПТИВНОСТЬ ---------- */
@@ -493,18 +576,36 @@
         display: none;
       }
       
-      .header-inner {
-        justify-content: space-between;
+      .directions-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
       
-      .fleet-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .why-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      
+      .counter {
+        font-size: 3rem;
       }
     }
 
     @media (max-width: 768px) {
       .container {
         padding: 0 20px;
+      }
+
+      .marquee {
+        display: none;
+      }
+
+      .header {
+        top: 0;
+        background-color: rgba(5, 5, 5, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        padding: 16px 0;
       }
 
       .hero {
@@ -518,22 +619,26 @@
       }
 
       .hero h1 {
-        font-size: 2.6rem;
+        font-size: 2.8rem;
       }
 
-      .fleet-grid,
-      .why-grid,
+      .directions-grid,
       .reviews-grid {
         grid-template-columns: 1fr;
         gap: 24px;
       }
 
-      .section-title {
-        font-size: 2rem;
-        margin-bottom: 40px;
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
 
-      .fleet, .why-us, .reviews, .contacts {
+      .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+      }
+
+      .directions, .why-us, .reviews, .contacts {
         padding: 80px 0;
       }
 
@@ -549,17 +654,13 @@
     }
 
     @media (max-width: 600px) {
-      .header {
-        padding: 16px 0;
-      }
-      
       .logo {
         font-size: 1.3rem;
       }
 
       .btn-header {
         padding: 10px 16px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
       }
 
       .hero h1 {
@@ -571,17 +672,24 @@
         margin-bottom: 32px;
       }
 
-      .fleet-card {
-        padding: 36px 24px;
+      .glass-card, .review-card {
+        padding: 30px 20px;
       }
 
-      .review-card {
-        padding: 24px;
+      .counter {
+        font-size: 3.5rem;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- БЕГУЩАЯ СТРОКА -->
+  <div class="marquee">
+    <div class="marquee-content">
+      БЕЗОПАСНАЯ ДОСТАВКА &nbsp;•&nbsp; ГАРАНТИЯ КАЧЕСТВА &nbsp;•&nbsp; НОВЫЕ И Б/У &nbsp;•&nbsp; ЯНДАРЕ &nbsp;•&nbsp; БЕЗОПАСНАЯ ДОСТАВКА &nbsp;•&nbsp; ГАРАНТИЯ КАЧЕСТВА &nbsp;•&nbsp; НОВЫЕ И Б/У &nbsp;•&nbsp; ЯНДАРЕ &nbsp;•&nbsp;
+    </div>
+  </div>
 
   <!-- ШАПКА -->
   <header class="header" id="header">
@@ -589,7 +697,7 @@
       <a href="#" class="logo">MAGAS <span>AUTO</span></a>
       
       <nav class="header-nav">
-        <a href="#fleet">Направления</a>
+        <a href="#directions">Направления</a>
         <a href="#why">Почему мы</a>
         <a href="#reviews">Отзывы</a>
       </nav>
@@ -598,69 +706,66 @@
     </div>
   </header>
 
-  <!-- ГЛАВНЫЙ ЭКРАН (ВИДЕО) -->
+  <!-- ГЛАВНЫЙ ЭКРАН -->
   <section class="hero">
     <video class="hero-video" src="video1.mp4" autoplay loop muted playsinline></video>
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-content">
-        <h1>Премиальные автомобили в Ингушетии</h1>
+        <h1>Премиальные автомобили в <span>Ингушетии</span></h1>
         <p class="subtitle">В наличии и на заказ. Безопасная доставка. с. Яндаре, ул. Ганижева 55</p>
         <a href="https://wa.me/79287957777" target="_blank" rel="noopener noreferrer" class="btn-primary">Написать в WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- НАПРАВЛЕНИЯ РАБОТЫ -->
-  <section id="fleet" class="fleet">
+  <!-- НАПРАВЛЕНИЯ -->
+  <section id="directions" class="directions">
     <div class="container">
-      <h2 class="section-title">Какие автомобили мы <span>предлагаем</span></h2>
-      <div class="fleet-grid">
+      <h2 class="section-title">Наши <span>направления</span></h2>
+      <div class="directions-grid">
         
-        <!-- Карточка 1 -->
-        <div class="fleet-card">
-          <div class="fleet-icon">
+        <div class="glass-card">
+          <div class="glass-icon">
             <svg viewBox="0 0 24 24">
               <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
               <circle cx="7" cy="17" r="2"></circle>
               <circle cx="17" cy="17" r="2"></circle>
             </svg>
           </div>
-          <h3>Новые автомобили</h3>
+          <h3>Новые авто</h3>
           <p>Официальные поставки, гарантия</p>
         </div>
 
-        <!-- Карточка 2 -->
-        <div class="fleet-card">
-          <div class="fleet-icon">
+        <div class="glass-card">
+          <div class="glass-icon">
             <svg viewBox="0 0 24 24">
               <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
               <circle cx="7" cy="17" r="2"></circle>
               <circle cx="17" cy="17" r="2"></circle>
             </svg>
           </div>
-          <h3>Автомобили с пробегом</h3>
+          <h3>С пробегом</h3>
           <p>Проверенные б/у варианты</p>
         </div>
 
-        <!-- Карточка 3 -->
-        <div class="fleet-card">
-          <div class="fleet-icon">
+        <div class="glass-card">
+          <div class="glass-icon">
             <svg viewBox="0 0 24 24">
               <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
               <circle cx="7" cy="17" r="2"></circle>
               <circle cx="17" cy="17" r="2"></circle>
             </svg>
           </div>
-          <h3>Подбор под заказ</h3>
-          <p>Найдем любую марку и модель под ваши требования</p>
+          <h3>Под заказ</h3>
+          <p>Найдем любую марку и модель</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ПОЧЕМУ МЫ -->
+  <!-- ПОЧЕМУ МЫ (СЧЕТЧИКИ) -->
   <section id="why" class="why-us">
     <div class="container">
       <h2 class="section-title">Почему <span>мы</span></h2>
@@ -675,8 +780,9 @@
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
           </div>
-          <h3>1000+ клиентов</h3>
-          <p>Более тысячи довольных покупателей, которые уже выбрали свой автомобиль в MAGAS AUTO.</p>
+          <span class="counter" data-target="1000">0</span><span class="counter-suffix">+</span>
+          <h3>Довольных клиентов</h3>
+          <p>Более тысячи покупателей уже выбрали свой автомобиль в MAGAS AUTO.</p>
         </div>
 
         <div class="why-item">
@@ -686,8 +792,9 @@
               <path d="M9 12L11 14L15 10"></path>
             </svg>
           </div>
+          <span class="counter" data-target="100">0</span><span class="counter-suffix">%</span>
           <h3>Безопасная доставка</h3>
-          <p>Организуем надежную доставку автомобиля в любой регион России с полным сопровождением.</p>
+          <p>Организуем надежную доставку автомобиля в любой регион России.</p>
         </div>
 
         <div class="why-item">
@@ -700,8 +807,9 @@
               <polyline points="10 9 9 9 8 9"></polyline>
             </svg>
           </div>
-          <h3>Новые и б/у авто</h3>
-          <p>Широкий выбор автомобилей: как новые модели, так и проверенные автомобили с пробегом.</p>
+          <span class="counter" data-target="50">0</span><span class="counter-suffix">+</span>
+          <h3>Моделей в наличии</h3>
+          <p>Широкий выбор новых и проверенных автомобилей с пробегом.</p>
         </div>
 
       </div>
@@ -783,7 +891,27 @@
       }
     });
 
-    // 2. Появление элементов при скролле (IntersectionObserver)
+    // 2. Функция для анимации счетчиков
+    function animateCounter(el) {
+      const target = +el.getAttribute('data-target');
+      const duration = 2000;
+      const stepTime = 20;
+      const steps = duration / stepTime;
+      const increment = target / steps;
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, stepTime);
+    }
+
+    // 3. Появление элементов при скролле (IntersectionObserver)
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -794,13 +922,22 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          
+          // Если это блок с счетчиком, запускаем анимацию цифр
+          if (entry.target.classList.contains('why-item')) {
+            const counter = entry.target.querySelector('.counter');
+            if (counter) {
+              animateCounter(counter);
+            }
+          }
+          
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
     // Наблюдаем за всеми карточками и блоками
-    document.querySelectorAll('.fleet-card, .why-item, .review-card, .contacts-box').forEach(el => {
+    document.querySelectorAll('.glass-card, .why-item, .review-card, .contacts-box').forEach(el => {
       observer.observe(el);
     });
   </script>
