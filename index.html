@@ -218,89 +218,79 @@
       color: #E3000F;
     }
 
-    /* ---------- ГАЛЕРЕЯ ---------- */
-    .cars {
+    /* ---------- АВТОПАРК ---------- */
+    .fleet {
       padding: 120px 0;
       background-color: #0A0A0A;
     }
 
-    .cars-grid {
+    .fleet-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 30px;
     }
 
-    .car-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 4px;
+    .fleet-card {
+      background-color: #151515;
+      padding: 50px 40px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
       display: flex;
       flex-direction: column;
-      text-decoration: none;
+      align-items: center;
+      text-align: center;
+      transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.3s ease, background 0.3s ease;
     }
 
-    .car-card.visible {
+    .fleet-card.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .car-image {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      position: relative;
+    .fleet-card:hover {
+      border-color: #E3000F;
       background-color: #1A1A1A;
     }
 
-    .car-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: brightness(0.8) contrast(1.1);
-      transition: transform 0.6s ease, filter 0.6s ease;
-    }
-
-    .car-card:hover .car-image img {
-      transform: scale(1.05);
-      filter: brightness(1) contrast(1);
-    }
-
-    .car-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10, 10, 10, 0.8) 0%, transparent 50%);
+    .fleet-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 24px;
       display: flex;
-      align-items: flex-end;
-      padding: 24px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      align-items: center;
+      justify-content: center;
     }
 
-    .car-card:hover .car-overlay {
-      opacity: 1;
+    .fleet-icon svg {
+      width: 64px;
+      height: 64px;
+      stroke: #E3000F;
+      fill: none;
+      stroke-width: 1.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.3s ease;
     }
 
-    .btn-book {
-      display: inline-flex;
-      padding: 12px 24px;
-      background-color: #E3000F;
+    .fleet-card:hover .fleet-icon svg {
+      transform: scale(1.1);
+    }
+
+    .fleet-card h3 {
+      font-size: 1.5rem;
       color: #FFFFFF;
-      font-size: 0.75rem;
+      margin-bottom: 12px;
+    }
+
+    .fleet-card p {
+      font-size: 0.95rem;
+      color: #888888;
+      font-weight: 300;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transform: translateY(20px);
-      transition: all 0.3s ease;
-    }
-
-    .car-card:hover .btn-book {
-      transform: translateY(0);
     }
 
     /* ---------- ПОЧЕМУ МЫ ---------- */
@@ -527,7 +517,7 @@
         font-size: 2.6rem;
       }
 
-      .cars-grid,
+      .fleet-grid,
       .why-grid,
       .reviews-grid {
         grid-template-columns: 1fr;
@@ -539,7 +529,7 @@
         margin-bottom: 40px;
       }
 
-      .cars, .why-us, .reviews, .contacts {
+      .fleet, .why-us, .reviews, .contacts {
         padding: 80px 0;
       }
 
@@ -577,8 +567,8 @@
         margin-bottom: 32px;
       }
 
-      .car-card:hover .car-image img {
-        transform: scale(1.03); 
+      .fleet-card {
+        padding: 36px 24px;
       }
 
       .review-card {
@@ -595,7 +585,7 @@
       <a href="#" class="logo">MAGAS <span>AUTO</span></a>
       
       <nav class="header-nav">
-        <a href="#cars">Автомобили</a>
+        <a href="#fleet">Автопарк</a>
         <a href="#why">Почему мы</a>
         <a href="#reviews">Отзывы</a>
       </nav>
@@ -617,47 +607,63 @@
     </div>
   </section>
 
-  <!-- АВТОМОБИЛИ -->
-  <section id="cars" class="cars">
+  <!-- НАШ АВТОПАРК -->
+  <section id="fleet" class="fleet">
     <div class="container">
-      <h2 class="section-title">Автомобили <span>в наличии</span></h2>
-      <div class="cars-grid">
+      <h2 class="section-title">Наш <span>автопарк</span></h2>
+      <div class="fleet-grid">
         
-        <a href="#" class="car-card">
-          <div class="car-image">
-            <img src="car2.jpg" alt="Автомобиль в наличии">
-            <div class="car-overlay">
-              <button class="btn-book">Забронировать</button>
-            </div>
+        <!-- Карточка 1 -->
+        <div class="fleet-card">
+          <div class="fleet-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+              <circle cx="7" cy="17" r="2"></circle>
+              <circle cx="17" cy="17" r="2"></circle>
+            </svg>
           </div>
-        </a>
-        
-        <a href="#" class="car-card">
-          <div class="car-image">
-            <img src="car3.jpg" alt="Автомобиль в наличии">
-            <div class="car-overlay">
-              <button class="btn-book">Забронировать</button>
-            </div>
-          </div>
-        </a>
+          <h3>Mercedes-AMG</h3>
+          <p>Спорт и роскошь</p>
+        </div>
 
-        <a href="#" class="car-card">
-          <div class="car-image">
-            <img src="car4.jpg" alt="Автомобиль в наличии">
-            <div class="car-overlay">
-              <button class="btn-book">Забронировать</button>
-            </div>
+        <!-- Карточка 2 -->
+        <div class="fleet-card">
+          <div class="fleet-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+              <circle cx="7" cy="17" r="2"></circle>
+              <circle cx="17" cy="17" r="2"></circle>
+            </svg>
           </div>
-        </a>
+          <h3>BMW X-серия</h3>
+          <p>Комфорт и мощность</p>
+        </div>
 
-        <a href="#" class="car-card">
-          <div class="car-image">
-            <img src="car5.jpg" alt="Автомобиль в наличии">
-            <div class="car-overlay">
-              <button class="btn-book">Забронировать</button>
-            </div>
+        <!-- Карточка 3 -->
+        <div class="fleet-card">
+          <div class="fleet-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+              <circle cx="7" cy="17" r="2"></circle>
+              <circle cx="17" cy="17" r="2"></circle>
+            </svg>
           </div>
-        </a>
+          <h3>G-Class</h3>
+          <p>Легендарный внедорожник</p>
+        </div>
+
+        <!-- Карточка 4 -->
+        <div class="fleet-card">
+          <div class="fleet-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+              <circle cx="7" cy="17" r="2"></circle>
+              <circle cx="17" cy="17" r="2"></circle>
+            </svg>
+          </div>
+          <h3>Авто под заказ</h3>
+          <p>Найдем любую модель</p>
+        </div>
 
       </div>
     </div>
@@ -803,7 +809,7 @@
     }, observerOptions);
 
     // Наблюдаем за всеми карточками и блоками
-    document.querySelectorAll('.car-card, .why-item, .review-card, .contacts-box').forEach(el => {
+    document.querySelectorAll('.fleet-card, .why-item, .review-card, .contacts-box').forEach(el => {
       observer.observe(el);
     });
   </script>
