@@ -40,7 +40,7 @@
       padding: 0 40px;
     }
 
-    /* ---------- MARQUEE ---------- */
+    /* ---------- MARQUEE (ИСПРАВЛЕННЫЙ) ---------- */
     .marquee {
       background-color: #050505;
       border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -51,14 +51,19 @@
       z-index: 101;
     }
 
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 30s linear infinite;
+    }
+
     .marquee-content {
       display: inline-block;
-      animation: marquee 25s linear infinite;
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.3em;
       color: #D4AF37;
       font-weight: 500;
+      padding-right: 40px; /* Отступ, чтобы слова не прилипали друг к другу при склейке */
     }
 
     @keyframes marquee {
@@ -686,8 +691,9 @@
 
   <!-- БЕГУЩАЯ СТРОКА -->
   <div class="marquee">
-    <div class="marquee-content">
-      БЕЗОПАСНАЯ ДОСТАВКА &nbsp;•&nbsp; ГАРАНТИЯ КАЧЕСТВА &nbsp;•&nbsp; НОВЫЕ И Б/У &nbsp;•&nbsp; ЯНДАРЕ &nbsp;•&nbsp; БЕЗОПАСНАЯ ДОСТАВКА &nbsp;•&nbsp; ГАРАНТИЯ КАЧЕСТВА &nbsp;•&nbsp; НОВЫЕ И Б/У &nbsp;•&nbsp; ЯНДАРЕ &nbsp;•&nbsp;
+    <div class="marquee-track">
+      <span class="marquee-content">БЕЗОПАСНАЯ ДОСТАВКА &nbsp;•&nbsp; ГАРАНТИЯ КАЧЕСТВА &nbsp;•&nbsp; НОВЫЕ И Б/У &nbsp;•&nbsp; ЯНДАРЕ &nbsp;•&nbsp; </span>
+      <span class="marquee-content">БЕЗОПАСНАЯ ДОСТАВКА &nbsp;•&nbsp; ГАРАНТИЯ КАЧЕСТВА &nbsp;•&nbsp; НОВЫЕ И Б/У &nbsp;•&nbsp; ЯНДАРЕ &nbsp;•&nbsp; </span>
     </div>
   </div>
 
