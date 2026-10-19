@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGAS AUTO — Премиальные автомобили в Грозном</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .logo {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ---------- HEADER ---------- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 24px 0;
+      background-color: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 100;
+      transition: padding 0.3s ease;
+    }
+
+    .header.scrolled {
+      padding: 16px 0;
+      background-color: rgba(10, 10, 10, 0.95);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+    }
+
+    .logo span {
+      color: #E3000F;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    .header-nav a {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #CCCCCC;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .header-nav a:hover {
+      color: #E3000F;
+    }
+
+    .btn-header {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background-color: #E3000F;
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-header:hover {
+      background-color: #B8000C;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 700px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      background-image: url('car1.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+      will-change: transform;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.6) 40%, rgba(10, 10, 10, 0.2) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.3s;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: #FFFFFF;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: #BBBBBB;
+      font-weight: 300;
+      margin-bottom: 48px;
+      max-width: 500px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 48px;
+      background-color: #E3000F;
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background-color: #B8000C;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(227, 0, 15, 0.3);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---------- СЕКЦИИ ---------- */
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 60px;
+      color: #FFFFFF;
+    }
+
+    .section-title span {
+      color: #E3000F;
+    }
+
+    /* ---------- ГАЛЕРЕЯ ---------- */
+    .cars {
+      padding: 120px 0;
+      background-color: #0A0A0A;
+    }
+
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .car-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .car-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .car-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      position: relative;
+      background-color: #1A1A1A;
+    }
+
+    .car-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.8);
+      transition: transform 0.6s ease, filter 0.6s ease;
+    }
+
+    .car-card:hover .car-image img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+
+    .car-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.8) 0%, transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .car-card:hover .car-overlay {
+      opacity: 1;
+    }
+
+    .btn-book {
+      display: inline-flex;
+      padding: 12px 24px;
+      background-color: #E3000F;
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    .car-card:hover .btn-book {
+      transform: translateY(0);
+    }
+
+    /* ---------- ПОЧЕМУ МЫ ---------- */
+    .why-us {
+      padding: 120px 0;
+      background-color: #0F0F0F;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .why-item {
+      text-align: center;
+      padding: 40px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: border-color 0.3s ease, background 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.3s, background 0.3s;
+    }
+
+    .why-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .why-item:hover {
+      border-color: #E3000F;
+      background-color: rgba(227, 0, 15, 0.05);
+    }
+
+    .why-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .why-icon svg {
+      width: 48px;
+      height: 48px;
+      stroke: #E3000F;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .why-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #FFFFFF;
+    }
+
+    .why-item p {
+      font-size: 0.9rem;
+      color: #999999;
+      line-height: 1.6;
+    }
+
+    /* ---------- ОТЗЫВЫ ---------- */
+    .reviews {
+      padding: 120px 0;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .review-card {
+      background-color: #121212;
+      padding: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.3s;
+    }
+
+    .review-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .review-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .review-stars {
+      color: #FFC107;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-size: 0.95rem;
+      color: #DDDDDD;
+      margin-bottom: 24px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .review-author {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- КОНТАКТЫ ---------- */
+    .contacts {
+      padding: 120px 0;
+      background-color: #0F0F0F;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .contacts-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .contacts-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contacts h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .contacts p {
+      font-size: 1rem;
+      color: #999999;
+      margin-bottom: 48px;
+    }
+
+    .contacts-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-instagram {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px 48px;
+      background-color: transparent;
+      color: #FFFFFF;
+      border: 1px solid #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-instagram:hover {
+      background-color: #FFFFFF;
+      color: #0A0A0A;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666666;
+    }
+
+    /* ---------- АДАПТИВНОСТЬ ---------- */
+    @media (max-width: 1024px) {
+      .header-nav {
+        display: none;
+      }
+      
+      .header-inner {
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .hero {
+        height: auto;
+        min-height: auto;
+        padding: 140px 0 80px;
+      }
+
+      .hero-bg {
+        height: 100%;
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .cars-grid,
+      .why-grid,
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
+
+      .cars, .why-us, .reviews, .contacts {
+        padding: 80px 0;
+      }
+
+      .btn-primary, .btn-instagram {
+        width: 100%;
+        padding: 18px 24px;
+      }
+
+      .contacts-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 16px 0;
+      }
+      
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      .btn-header {
+        padding: 10px 16px;
+        font-size: 0.7rem;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1rem;
+        margin-bottom: 32px;
+      }
+
+      .car-card:hover .car-image img {
+        transform: scale(1.03); /* Меньше зум на мобильных */
+      }
+
+      .review-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">MAGAS <span>AUTO</span></a>
+      
+      <nav class="header-nav">
+        <a href="#cars">Автомобили</a>
+        <a href="#why">Почему мы</a>
+        <a href="#reviews">Отзывы</a>
+      </nav>
+      
+      <a href="https://wa.me/79287957777" target="_blank" rel="noopener noreferrer" class="btn-header">Связаться</a>
+    </div>
+  </header>
+
+  <!-- ГЛАВНЫЙ ЭКРАН -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Премиальные автомобили в Грозном</h1>
+        <p class="subtitle">В наличии и на заказ. Безопасная доставка.</p>
+        <a href="https://wa.me/79287957777" target="_blank" rel="noopener noreferrer" class="btn-primary">Написать в WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- АВТОМОБИЛИ -->
+  <section id="cars" class="cars">
+    <div class="container">
+      <h2 class="section-title">Автомобили <span>в наличии</span></h2>
+      <div class="cars-grid">
+        
+        <a href="#" class="car-card">
+          <div class="car-image">
+            <img src="car2.jpg" alt="Автомобиль в наличии">
+            <div class="car-overlay">
+              <button class="btn-book">Забронировать</button>
+            </div>
+          </div>
+        </a>
+        
+        <a href="#" class="car-card">
+          <div class="car-image">
+            <img src="car3.jpg" alt="Автомобиль в наличии">
+            <div class="car-overlay">
+              <button class="btn-book">Забронировать</button>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="car-card">
+          <div class="car-image">
+            <img src="car4.jpg" alt="Автомобиль в наличии">
+            <div class="car-overlay">
+              <button class="btn-book">Забронировать</button>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="car-card">
+          <div class="car-image">
+            <img src="car5.jpg" alt="Автомобиль в наличии">
+            <div class="car-overlay">
+              <button class="btn-book">Забронировать</button>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОЧЕМУ МЫ -->
+  <section id="why" class="why-us">
+    <div class="container">
+      <h2 class="section-title">Почему <span>мы</span></h2>
+      <div class="why-grid">
+        
+        <div class="why-item">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z"></path>
+              <path d="M9 12L11 14L15 10"></path>
+            </svg>
+          </div>
+          <h3>Гарантия качества</h3>
+          <p>Тщательная проверка каждого автомобиля перед продажей. Юридическая чистота сделки.</p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.5 4.5 5.5 6.5 4.5C8 3.8 10 3.5 12 3.5C14 3.5 16 3.8 17.5 4.5C19.5 5.5 21 7.5 21 10Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <h3>Безопасная доставка</h3>
+          <p>Организуем доставку автомобиля в любой регион России с полной страховкой.</p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path>
+            </svg>
+          </div>
+          <h3>Индивидуальный подход</h3>
+          <p>Поможем подобрать автомобиль под ваши задачи и бюджет. Авто под заказ из-за рубежа.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section id="reviews" class="reviews">
+    <div class="container">
+      <h2 class="section-title">Отзывы <span>клиентов</span></h2>
+      <div class="reviews-grid">
+        
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Крутая машина, обслуживание супер. Приехал с Нальчика, забрал Весту, сделали скидку. Доволен!»</p>
+          <div class="review-author">Салман</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Салон на высшем уровне, просто молодцы. Очень доволен покупкой, всем советую! Теперь постоянно буду покупать машины только у них.»</p>
+          <div class="review-author">Заур Керефов</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Автосалон рекомендую! Машина оказалась даже лучше, чем по телефону, потому что были уже установлены допы.»</p>
+          <div class="review-author">Magiev</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Прошло всё отлично, приехал за 250 км, автомобиль соответствовал описанию. Встретили отлично, договор написали за 20 минут.»</p>
+          <div class="review-author">Adam</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section id="contacts" class="contacts">
+    <div class="container">
+      <div class="contacts-box">
+        <h2>Свяжитесь с нами</h2>
+        <p>Ответим на все вопросы и подберём автомобиль под ваши задачи</p>
+        <div class="contacts-buttons">
+          <a href="https://wa.me/79287957777" target="_blank" rel="noopener noreferrer" class="btn-primary">Написать в WhatsApp</a>
+          <a href="https://www.instagram.com/auto_magas/" target="_blank" rel="noopener noreferrer" class="btn-instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОДВАЛ -->
+  <footer class="footer">
+    <div class="container">
+      © MAGAS AUTO 2026
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // 1. Эффект шапки при скролле и параллакс
+    const header = document.getElementById('header');
+    const heroBg = document.getElementById('heroBg');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      // Параллакс для Hero
+      if (heroBg && window.innerWidth > 768) {
+        const scrolled = window.pageYOffset;
+        heroBg.style.transform = `translateY(${scrolled * 0.4}px)`;
+      }
+    });
+
+    // 2. Появление элементов при скролле (IntersectionObserver)
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Наблюдаем за всеми карточками и блоками
+    document.querySelectorAll('.car-card, .why-item, .review-card, .contacts-box').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
